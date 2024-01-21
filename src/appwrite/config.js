@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Databases, ID ,Storage,Query} from "appwrite";
+import { Client, Databases, ID ,Storage, Query} from "appwrite";
 
 export class Service{
        client =new Client();
@@ -58,6 +58,67 @@ export class Service{
             console.log("Appwrite Service :: delete post :: error",error);
             return false;
         }
+       }
+
+       async getPost(slug){
+          try {
+           return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
+            )
+          } catch (error) {
+            console.log("Appwrite Service :: getPost :: error",error);
+            return false;
+          }
+       }
+
+       async getPosts(query = [Query.equal("status","active")]){
+           try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                query
+            )
+           } catch (error) {
+             console.log("Appwrite Service :: getPosts :: error",error);
+             return false;
+           }
+       }
+
+       //file upload service
+
+       async uploadFile(file){
+          try {
+            return await this.bucket.createFile(
+                conf.appwriteBucketId,
+                ID.unique(),
+                file
+            )
+          } catch (error) {
+            console.log("Appwrite Service :: uploadFile :: error",error);
+            return false;
+          }
+       }
+
+       async deleteFile(fileId){
+        try {
+            await this.bucket.deleteFile(
+                conf.appwriteBucketId,
+                fileId
+            )
+            return true;
+        } catch (error) {
+            console.log("Appwrite Service :: deleteFile :: error",error);
+            return false;
+        }
+       }
+
+       getFilePreview(fileId){
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
        }
 }
 
