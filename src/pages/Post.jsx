@@ -67,6 +67,7 @@ export default function Post() {
                         {parse(post.content)}
                  </div>
             </Container>
+            
         </div>
     ) : null;
  

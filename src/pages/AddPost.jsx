@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container,PostForm } from '../Components/Input'
+import { Container,PostForm } from '../Components'
 
 function AddPost() {
   return (
@@ -11,4 +11,4 @@ function AddPost() {
   )
 }
 
-export default AddPost
+export default AddPost;
