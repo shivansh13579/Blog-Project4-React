@@ -6,11 +6,15 @@ import store from './store/store.js'
 import { Provider } from 'react-redux'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-import { AuthLayout, Login, Signup } from './Components/index.js'
+import { AuthLayout } from './Components/index.js'
 import AllPosts from './pages/AllPosts.jsx'
 import AddPost from './pages/AddPost.jsx'
 import Editpost from './pages/Editpost.jsx'
 import Post from './pages/Post.jsx'
+import Signup from './pages/Signup.jsx'
+import Login from './pages/Login.jsx'
+
+
 
 const router = createBrowserRouter([
    {
